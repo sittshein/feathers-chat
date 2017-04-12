@@ -2,7 +2,7 @@
 
 const { authenticate } = require('feathers-authentication').hooks;
 const { hashPassword } = require('feathers-authentication-local').hooks;
-const commonHooks  = require('feathers-hooks-common');
+const commonHooks = require('feathers-hooks-common');
 const gravatar = require('../../hooks/gravatar');
 
 module.exports = {
@@ -10,7 +10,22 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [hashPassword(), gravatar()],
+    create: [
+      hashPassword(),
+      commonHooks.iff(
+        // If the data contains a github object...
+        hook => hook.data.github,
+        // Set hook.data.email to the github user's email.
+        hook => {
+          let emails = hook.data.github.profile.emails;
+          if (!emails || !emails.length) {
+            throw new Error(`GitHub login for ${hook.data.github.profile.username} failed due to missing email.`);
+          }
+          hook.data.email = emails[0].value;
+        }
+      ),
+      gravatar()
+    ],
     update: [ authenticate('jwt') ],
     patch: [ authenticate('jwt') ],
     remove: [ authenticate('jwt') ]
