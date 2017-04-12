@@ -5,10 +5,12 @@ const jwt = require('feathers-authentication-jwt');
 const local = require('feathers-authentication-local');
 const oauth2 = require('feathers-authentication-oauth2');
 const GithubStrategy = require('passport-github');
+const makeHandler = require('./oauth-handler');
 
 module.exports = function () {
   const app = this;
   const config = app.get('authentication');
+  const handler = makeHandler(app);
 
   // Set up authentication with the secret
   app.configure(authentication(config));
@@ -17,7 +19,8 @@ module.exports = function () {
 
   app.configure(oauth2(Object.assign({
     name: 'github',
-    Strategy: GithubStrategy
+    Strategy: GithubStrategy,
+    handler: handler(config.github.successRedirect)
   }, config.github)));
 
   // The `authentication` service is used to create a JWT.

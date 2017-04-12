@@ -26,7 +26,7 @@
     "github": {
       "clientID": "your github client id",
       "clientSecret": "your github client secret",
-      "successRedirect": "/"
+      "successRedirect": "http://localhost:8080/handle-oauth-login.html"
     },
     "cookie": {
       "enabled": true,
