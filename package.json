@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.0.1",
-    "@feathersjs/authentication-jwt": "^1.0.1",
+    "@feathersjs/authentication-jwt": "^2.0.0",
     "@feathersjs/authentication-local": "^1.0.2",
     "@feathersjs/configuration": "^1.0.1",
     "@feathersjs/errors": "^3.2.0",
@@ -39,7 +39,9 @@
     "@feathersjs/feathers": "^3.0.2",
     "@feathersjs/socketio": "^3.0.1",
     "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "ejs": "^2.5.7",
     "feathers-nedb": "^3.0.0",
     "helmet": "^3.9.0",
     "nedb": "^1.8.0",
