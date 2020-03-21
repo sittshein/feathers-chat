@@ -1,6 +1,6 @@
 # feathers-chat
 
-[![Build Status](https://img.shields.io/travis/feathersjs/feathers-chat/master.svg)](https://travis-ci.org/feathersjs/feathers-chat)
+[![CI](https://github.com/feathersjs/feathers-chat/workflows/CI/badge.svg)](https://github.com/feathersjs/feathers-chat/actions?query=workflow%3ACI)
 
 > A FeathersJS chat application
 
